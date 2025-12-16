@@ -87,7 +87,7 @@
                 <div class="absolute -top-6 -left-6 w-full h-full border-2 border-blue-100 rounded-2xl z-0 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
                 
                 <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
-                    <img src="{{ asset('storage/colegio/inaguracion.jpg') }}" 
+                    <img src="{{ asset('images/inaguracion.jpg') }}" 
                          alt="Misión Educativa" 
                          class="w-full h-auto object-cover transform transition duration-700 group-hover:scale-105">
                 </div>
@@ -131,7 +131,7 @@
                 <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-amber-100 rounded-2xl z-0 transition-transform duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2"></div>
                 
                 <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
-                    <img src="{{ asset('storage/colegio/alumnos.jpg') }}"  
+                    <img src="{{ asset('images/alumnos.jpg') }}"  
                          alt="Visión Futura" 
                          class="w-full h-auto object-cover transform transition duration-700 group-hover:scale-105">
                 </div>

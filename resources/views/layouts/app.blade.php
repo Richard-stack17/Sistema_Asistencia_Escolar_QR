@@ -39,7 +39,7 @@
             {{-- LOGO --}}
             <a href="{{ route('home') }}" class="flex items-center gap-3 group">
                 <div class="relative group-hover:scale-105 transition-transform duration-300">
-                    <img src="{{ asset('storage/images/logo_colegio.png') }}"
+                    <img src="{{ asset('images/logo_colegio.png') }}"
                         alt="Logo"
                         class="w-10 h-12 object-contain drop-shadow-sm">
                 </div>
