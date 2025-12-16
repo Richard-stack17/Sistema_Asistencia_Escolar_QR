@@ -39,27 +39,38 @@
 {{-- LIBRERÍA QR --}}
 <script src="https://unpkg.com/html5-qrcode"></script>
 
+<script src="https://unpkg.com/html5-qrcode"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
+        let yaEscaneado = false;
+        let html5QrCode = new Html5Qrcode("reader");
+
         function onScanSuccess(decodedText) {
 
-            // sonido opcional 🔊
+            if (yaEscaneado) return; // evita duplicados
+            yaEscaneado = true;
+
             const beep = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
             beep.play();
 
             document.getElementById('codigo_qr').value = decodedText.trim();
 
-            document.getElementById('formQR').submit();
+            // DETENER CÁMARA
+            html5QrCode.stop().then(() => {
+                document.getElementById('formQR').submit();
+            }).catch(err => {
+                console.error(err);
+                document.getElementById('formQR').submit();
+            });
         }
 
-        const html5QrCode = new Html5Qrcode("reader");
-
         Html5Qrcode.getCameras().then(cameras => {
-            if (cameras && cameras.length) {
+            if (cameras.length > 0) {
                 html5QrCode.start(
                     cameras[0].id, {
-                        fps: 15,
+                        fps: 10, // baja FPS
                         qrbox: {
                             width: 230,
                             height: 230
@@ -77,5 +88,6 @@
 
     });
 </script>
+
 
 @endsection
