@@ -36,7 +36,7 @@ class UsuarioController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:100',
-            'correo' => 'required|email|unique:usuario,correo',
+            'correo' => 'required|email|unique:USUARIO,correo',
             'password' => 'required|min:6',
             'id_rol' => 'required|exists:rol,id_rol',
         ]);
@@ -83,7 +83,7 @@ class UsuarioController extends Controller
 
         $request->validate([
             'nombre' => 'required|string|max:100',
-            'correo' => 'required|email|unique:usuario,correo,' . $id . ',id_usuario',
+            'correo' => 'required|email|unique:USUARIO,correo,' . $id . ',id_usuario',
             'id_rol' => 'required|exists:rol,id_rol',
             'activo_' => 'required|boolean',
         ]);
