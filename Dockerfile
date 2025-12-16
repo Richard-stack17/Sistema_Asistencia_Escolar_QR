@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
+    libicu-dev \
     zip \
     curl \
     npm \
@@ -15,6 +16,7 @@ RUN apt-get update && apt-get install -y \
         pdo \
         pdo_mysql \
         zip \
+        intl \
         mbstring \
         exif \
         pcntl \
@@ -24,20 +26,20 @@ RUN apt-get update && apt-get install -y \
 # Habilitar mod_rewrite
 RUN a2enmod rewrite
 
-# Instalar Composer
+# Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copiar proyecto
+# Copiar app
 COPY . /var/www/html
 WORKDIR /var/www/html
 
 # Permisos Laravel
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Instalar dependencias PHP
+# Instalar dependencias PHP (sin interacción)
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Build frontend (Vite + Tailwind)
+# Build frontend
 RUN npm install && npm run build
 
 # Apache apuntando a /public
