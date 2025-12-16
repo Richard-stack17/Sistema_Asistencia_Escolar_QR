@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Apoderado extends Model
 {
-    protected $table = 'apoderado';
+    protected $table = 'APODERADO';
     protected $primaryKey = 'id_apoderado';
     public $incrementing = false;
     protected $keyType = 'string';

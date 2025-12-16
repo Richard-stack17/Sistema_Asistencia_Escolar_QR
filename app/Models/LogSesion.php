@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogSesion extends Model
 {
-    protected $table = 'log_sesion';
+    protected $table = 'LOG_SESION';
     protected $primaryKey = 'id_sesion';
     public $timestamps = false;
 
