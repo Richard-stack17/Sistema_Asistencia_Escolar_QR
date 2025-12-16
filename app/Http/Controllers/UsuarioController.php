@@ -38,7 +38,7 @@ class UsuarioController extends Controller
             'nombre' => 'required|string|max:100',
             'correo' => 'required|email|unique:USUARIO,correo',
             'password' => 'required|min:6',
-            'id_rol' => 'required|exists:rol,id_rol',
+            'id_rol' => 'required|exists:ROL,id_rol',
         ]);
 
         $usuario = Usuario::create([
@@ -84,7 +84,7 @@ class UsuarioController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:100',
             'correo' => 'required|email|unique:USUARIO,correo,' . $id . ',id_usuario',
-            'id_rol' => 'required|exists:rol,id_rol',
+            'id_rol' => 'required|exists:ROL,id_rol',
             'activo_' => 'required|boolean',
         ]);
 
