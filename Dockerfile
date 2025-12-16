@@ -19,6 +19,9 @@ RUN chmod -R 775 storage bootstrap/cache
 
 # Dependencias
 RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+RUN php artisan storage:link
+
 RUN npm install && npm run build
 
 # Puerto dinámico Railway
