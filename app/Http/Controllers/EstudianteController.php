@@ -59,7 +59,7 @@ class EstudianteController extends Controller
 
     public function create()
     {
-        $distritos = DB::table('distrito')->get();
+        $distritos = DB::table('DISTRITO')->get();
         return view('estudiantes.create', compact('distritos'));
     }
 
