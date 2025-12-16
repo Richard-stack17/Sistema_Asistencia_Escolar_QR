@@ -20,7 +20,7 @@ class UsuarioController extends Controller
     // Ver detalles de un usuario
     public function show($id)
     {
-        $usuario = Usuario::with('rolData')->findOrFail($id);
+        $usuario = Usuario::with('rol')->findOrFail($id);
         return view('usuarios.show', compact('usuario'));
     }
 
