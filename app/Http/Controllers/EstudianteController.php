@@ -133,7 +133,7 @@ class EstudianteController extends Controller
     public function edit($id)
     {
         $estudiante = Estudiante::findOrFail($id);
-        $distritos = DB::table('distrito')->get();
+        $distritos = DB::table('DISTRITO')->get();
 
         return view('estudiantes.edit', compact('estudiante', 'distritos'));
     }

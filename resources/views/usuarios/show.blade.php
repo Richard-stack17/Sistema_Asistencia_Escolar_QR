@@ -8,7 +8,7 @@
     <div class="bg-white shadow rounded-lg p-6 space-y-4">
         <div><strong>Nombre:</strong> {{ $usuario->nombre }}</div>
         <div><strong>Correo:</strong> {{ $usuario->correo }}</div>
-        <div><strong>Rol:</strong> {{ $usuario->rolData->nombre_rol ?? '-' }}</div>
+        <div><strong>Rol:</strong> {{ $usuario->rol->nombre_rol ?? '-' }}</div>
         <div>
             <strong>Activo:</strong>
             @if($usuario->activo_)
