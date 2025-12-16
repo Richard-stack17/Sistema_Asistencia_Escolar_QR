@@ -77,7 +77,6 @@ class AsistenciaController extends Controller
         // Buscar estudiante
         $estudiante = Estudiante::where('codigo_qr', 'LIKE', "%$codigo%")->first();
         if (!$estudiante) {
-            dump('QR no válido', $codigo);
             return redirect()->route('asistencia.escanear')->with('error', 'QR no válido');
         }
 
@@ -104,7 +103,6 @@ class AsistenciaController extends Controller
             if ($yaRegistrado->duplicado_ == 0) {
                 $yaRegistrado->duplicado_ = 1;
                 $yaRegistrado->save();
-                dump('Registro marcado como duplicado', $yaRegistrado->ID_asistencia);
             }
 
             return redirect()->route('asistencia.exitosa', [
