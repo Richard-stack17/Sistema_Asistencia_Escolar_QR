@@ -57,7 +57,9 @@ class AsistenciaController extends Controller
                 $q->where('estado', 'Pendiente');
             });
         }
-
+        if ($request->filled('fecha')) {
+            $query->whereDate('fecha', $request->fecha);
+        }
         $asistencias = $query->get();
 
         return view('asistencias.index', compact('asistencias', 'grados', 'secciones'));

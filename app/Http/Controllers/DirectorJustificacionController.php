@@ -17,11 +17,20 @@ class DirectorJustificacionController extends Controller
             ->when($estado, function ($q) use ($estado) {
                 $q->where('estado', $estado);
             })
+
+            // FILTRO POR FECHA
+            ->when($request->filled('fecha'), function ($q) use ($request) {
+                $q->whereHas('asistencia', function ($sub) use ($request) {
+                    $sub->whereDate('fecha', $request->fecha);
+                });
+            })
+
             ->orderBy('fecha_envio', 'desc')
             ->get();
 
         return view('director.justificaciones', compact('justificaciones'));
     }
+
 
 
     public function resolver(Request $request, $id)

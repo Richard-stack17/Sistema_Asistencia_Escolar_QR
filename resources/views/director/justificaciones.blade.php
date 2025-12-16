@@ -14,29 +14,59 @@
     </div>
 
     {{-- FILTRO --}}
-    <div class="mb-6 bg-white p-4 rounded-lg shadow">
-        <form method="GET" class="flex flex-wrap gap-3 items-center">
-            <select name="estado"
-                class="border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-500 focus:outline-none">
-                <option value="">Todos</option>
-                <option value="Pendiente" {{ request('estado') == 'Pendiente' ? 'selected' : '' }}>Pendientes</option>
-                <option value="Aprobado" {{ request('estado') == 'Aprobado' ? 'selected' : '' }}>Aprobadas</option>
-                <option value="Rechazado" {{ request('estado') == 'Rechazado' ? 'selected' : '' }}>Rechazadas</option>
-            </select>
+    <div class="mb-6 bg-white p-5 rounded-xl shadow-sm border">
+        <form method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
 
-            <button type="submit"
-                class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 font-semibold">
-                Filtrar
-            </button>
+            {{-- ESTADO --}}
+            <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1">
+                    Estado
+                </label>
+                <select name="estado"
+                    class="w-full border-gray-300 rounded-lg px-3 py-2
+                focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                    <option value="">Todos</option>
+                    <option value="Pendiente" {{ request('estado') == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
+                    <option value="Aprobado" {{ request('estado') == 'Aprobado' ? 'selected' : '' }}>Aprobado</option>
+                    <option value="Rechazado" {{ request('estado') == 'Rechazado' ? 'selected' : '' }}>Rechazado</option>
+                </select>
+            </div>
 
-            @if(request()->has('estado') && request('estado') != '')
-            <a href="{{ route('director.justificaciones') }}"
-                class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 font-semibold">
-                Limpiar
-            </a>
+            {{-- FECHA --}}
+            <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1">
+                    Fecha de asistencia
+                </label>
+                <input type="date"
+                    name="fecha"
+                    value="{{ request('fecha') }}"
+                    class="w-full border-gray-300 rounded-lg px-3 py-2
+                focus:ring-2 focus:ring-orange-500 focus:outline-none">
+            </div>
+
+            {{-- BOTÓN FILTRAR --}}
+            <div>
+                <button type="submit"
+                    class="w-full bg-orange-600 text-white px-4 py-2 rounded-lg
+                hover:bg-orange-700 font-semibold">
+                    Filtrar
+                </button>
+            </div>
+
+            {{-- BOTÓN LIMPIAR --}}
+            @if(request()->filled('estado') || request()->filled('fecha'))
+            <div>
+                <a href="{{ route('director.justificaciones') }}"
+                    class="w-full inline-block text-center bg-gray-500 text-white px-4 py-2
+                rounded-lg hover:bg-gray-600 font-semibold">
+                    Limpiar
+                </a>
+            </div>
             @endif
+
         </form>
     </div>
+
 
     {{-- LISTADO --}}
     <div class="space-y-6">
@@ -58,11 +88,11 @@
 
                 {{-- ESTADO --}}
                 @php
-                    $estadoClasses = [
-                        'Pendiente' => 'bg-yellow-100 text-yellow-700',
-                        'Aprobado' => 'bg-green-100 text-green-700',
-                        'Rechazado' => 'bg-red-100 text-red-700'
-                    ];
+                $estadoClasses = [
+                'Pendiente' => 'bg-yellow-100 text-yellow-700',
+                'Aprobado' => 'bg-green-100 text-green-700',
+                'Rechazado' => 'bg-red-100 text-red-700'
+                ];
                 @endphp
 
                 <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold {{ $estadoClasses[$j->estado] ?? '' }}">

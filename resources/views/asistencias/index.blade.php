@@ -31,6 +31,16 @@
                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     onchange="document.getElementById('filterForm').submit()">
             </div>
+            {{-- Filtro por Fecha --}}
+            <div class="w-full md:w-1/6">
+                <input type="date"
+                    name="fecha"
+                    value="{{ request('fecha') }}"
+                    onchange="document.getElementById('filterForm').submit()"
+                    class="block w-full py-2 px-3 border border-gray-300 rounded-lg
+                  focus:outline-none focus:ring-blue-500 focus:border-blue-500
+                  text-sm cursor-pointer">
+            </div>
 
             {{-- Filtro de Estado --}}
             <div class="w-full md:w-1/6">
@@ -209,7 +219,7 @@
                         </td>
 
                         {{-- ACCIONES --}}
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
                             @if($a->justificacion)
                             @if($a->justificacion->estado === 'Aprobado' || $a->justificacion->estado === 'Rechazado')
                             <a href="{{ route('justificaciones.show', $a->justificacion->id_justificacion) }}"
