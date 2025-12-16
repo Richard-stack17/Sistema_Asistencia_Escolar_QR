@@ -25,5 +25,10 @@ RUN npm install && npm run build
 ENV PORT=8080
 EXPOSE 8080
 
+RUN php artisan config:clear \
+ && php artisan cache:clear \
+ && php artisan view:clear \
+ && php artisan route:clear
+
 # Arranque Laravel
 CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
